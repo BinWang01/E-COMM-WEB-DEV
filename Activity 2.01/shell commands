@@ -1,0 +1,16 @@
+python manage.py migrate 
+python3 manage.py makemigrations projectp 
+
+python manage.py shell
+from projectp.models import Project
+project = Project(name='Website Development')
+project.save()
+from projectp.models import Task
+task = Task.objects.create(title='Site design',description='Design site mockup',project=project,time_estimate=16,completed=False)
+task.save()
+
+Project.objects.all()
+<QuerySet [<Project: Website Development>]>
+
+Task.objects.all()
+<QuerySet [<Task: Site design>, <Task: Static webpage development>]>
